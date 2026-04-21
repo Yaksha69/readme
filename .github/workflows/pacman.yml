@@ -33,4 +33,6 @@ jobs:
           cp dist/pacman-contribution-graph.svg ./pacman-contribution-graph.svg
           git add pacman-contribution-graph.svg
           git commit -m "Update pacman contribution graph" --allow-empty
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -34,4 +34,6 @@ jobs:
           cp dist/snake.svg ./snake.svg
           git add snake.svg
           git commit -m "Update snake animation" --allow-empty
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
