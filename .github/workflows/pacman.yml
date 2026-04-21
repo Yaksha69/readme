@@ -18,7 +18,10 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: generate pacman-contribution-graph.svg
         uses: abozanona/pacman-contribution-graph@main
@@ -33,6 +36,4 @@ jobs:
           cp dist/pacman-contribution-graph.svg ./pacman-contribution-graph.svg
           git add pacman-contribution-graph.svg
           git commit -m "Update pacman contribution graph" --allow-empty
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push

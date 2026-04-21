@@ -18,7 +18,10 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: generate snake.svg
         uses: Platane/snk/svg-only@v3
@@ -34,6 +37,4 @@ jobs:
           cp dist/snake.svg ./snake.svg
           git add snake.svg
           git commit -m "Update snake animation" --allow-empty
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push
